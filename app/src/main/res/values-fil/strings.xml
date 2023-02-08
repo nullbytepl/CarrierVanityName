@@ -1,0 +1,11 @@
+<resources>
+    <string name="action_settings">Mga Setting</string>
+
+    <string name="setup_fragment_label">Paghahanda</string>
+	
+    <string name="next">Tumuloy</string>
+
+    <string name="shizuku_intro">
+        Kailangan mo ang Shizuku para sa app na ito. Hihilinging pahintulutan ang app na ito na ma-access ang Shizuku kung naka-install iyon.\n\nTandaang maaaring makahamak sa device mo (at mga datos na nilalaman nito) ang anumang gumagamit ng Shizuku. Hindi responsable ang may-akda ng app na ito sa mga pinsalang maaaring maidulot.\n\nIsaisip ang babalang ito.
+    </string>
+</resources>
