@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Carrier Vanity Name</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="setup_fragment_label">Setup</string>
+    <string name="target_fragment_label">Carrier Vanity Name</string>
+
+    <string name="next">Continue</string>
+
+    <string name="shizuku_intro">
+        To use this app you need Shizuku. If it\'s installed, you will be asked to grant this app permissions.\n\nKeep in mind that anything using Shizuku might potentially cause harm to your device (and the data on it). I\'m not responsible for any damage that might be caused by this app.\n\nYou have been warned.
+    </string>
+</resources>
