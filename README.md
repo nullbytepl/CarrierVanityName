@@ -8,4 +8,4 @@ The app uses [Shizuku](https://shizuku.rikka.app/) to achieve this using carrier
 **WARNING**: Anything using Shizuku might potentially cause harm to your device (and the data on it). I'm not responsible for any damage that might be caused by this app.
 You have been warned.
 
-[You can download a prebuilt APK here](https://github.com/nullbytepl/CarrierVanityName)
+[You can download a prebuilt APK here](https://github.com/nullbytepl/CarrierVanityName/releases)
