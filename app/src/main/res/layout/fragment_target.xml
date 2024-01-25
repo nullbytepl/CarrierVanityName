@@ -41,7 +41,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="hate crime"
+                android:hint="Vanity network name"
+                android:inputType="text"
+                android:paddingTop="16dp" />
+
+            <EditText
+                android:id="@+id/iso_region_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="ISO country code (leave empty to leave unchanged)"
                 android:inputType="text"
                 android:paddingTop="16dp" />
 

@@ -20,6 +20,7 @@ import android.widget.Toast
 import com.android.internal.telephony.ICarrierConfigLoader
 import gay.nullby.carriername.databinding.FragmentTargetBinding
 import rikka.shizuku.ShizukuBinderWrapper
+import java.util.Locale
 
 class TargetFragment : Fragment() {
     private val TAG: String = "TargetFragment"
@@ -64,11 +65,12 @@ class TargetFragment : Fragment() {
             view.findViewById<View>(R.id.sub2_button).visibility = View.GONE
         }
 
-        view.findViewById<Button>(R.id.button_set).setOnClickListener { onSetName(view.findViewById<EditText>(R.id.text_entry).text.toString()) }
+        view.findViewById<Button>(R.id.button_set).setOnClickListener { onSetName(view.findViewById<EditText>(R.id.text_entry).text.toString(), view.findViewById<EditText>(R.id.iso_region_input).text.toString()) }
 
         view.findViewById<Button>(R.id.button_reset).setOnClickListener {
             onResetName()
             view.findViewById<EditText>(R.id.text_entry).setText("")
+            view.findViewById<EditText>(R.id.iso_region_input).setText("")
         }
 
         view.findViewById<RadioGroup>(R.id.sub_selection).setOnCheckedChangeListener { _, checkedId -> onSelectSub(checkedId) }
@@ -76,12 +78,26 @@ class TargetFragment : Fragment() {
         onSelectSub(0)
     }
 
-    private fun onSetName(text: String) {
-        Toast.makeText(context, "Set carrier vanity name to \"$text\"", Toast.LENGTH_SHORT).show()
+    private fun onSetName(text: String, isoRegion: String) {
         var p = PersistableBundle();
+        if (isoRegion.isNotEmpty()) {
+            if (isoRegion.length == 2) {
+                p.putString(CarrierConfigManager.KEY_SIM_COUNTRY_ISO_OVERRIDE_STRING, isoRegion.lowercase(
+                    Locale.ROOT
+                )
+                )
+            } else {
+                Toast.makeText(context, "Invalid ISO region!", Toast.LENGTH_SHORT).show()
+                return
+            }
+        }
+        Toast.makeText(context, "Set carrier vanity name to \"$text\"", Toast.LENGTH_SHORT).show()
+
         p.putBoolean(CarrierConfigManager.KEY_CARRIER_NAME_OVERRIDE_BOOL, true)
         p.putString(CarrierConfigManager.KEY_CARRIER_NAME_STRING, text)
         p.putString(CarrierConfigManager.KEY_CARRIER_CONFIG_VERSION_STRING, /* trans rights! 🏳️‍⚧️*/ ":3")
+        p.putBoolean(CarrierConfigManager.KEY_CARRIER_VOLTE_AVAILABLE_BOOL, true)
+
         val subId: Int;
         if (selectedSub == 1) {
             subId = subId1!!
