@@ -13,5 +13,6 @@ You have been warned.
 # Examples
 Some common carrier names you can spoof for if you're in the US can include: T-Mobile or Verizon
 Some ISO country codes to spoof can also include: "us" (United States), "au" (Australia), "de" (Germany), "fr" (France), "in" (India)
+P.S. The ISO country codes specifies to the ISO 3166-1 Alpha-2 country code (aka 2 letter country codes)
 
 [You can download a prebuilt APK here](https://github.com/nullbytepl/CarrierVanityName/releases)
