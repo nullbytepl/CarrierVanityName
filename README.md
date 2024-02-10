@@ -10,4 +10,8 @@ The app uses [Shizuku](https://shizuku.rikka.app/) to achieve this using carrier
 **WARNING**: Anything using Shizuku might potentially cause harm to your device (and the data on it). I'm not responsible for any damage that might be caused by this app.
 You have been warned.
 
+# Examples
+Some common carrier names you can spoof for if you're in the US can include: T-Mobile or Verizon
+Some ISO country codes to spoof can also include: "us" (United States), "au" (Australia), "de" (Germany), "fr" (France), "in" (India)
+
 [You can download a prebuilt APK here](https://github.com/nullbytepl/CarrierVanityName/releases)
