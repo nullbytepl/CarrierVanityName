@@ -10,4 +10,6 @@ The app uses [Shizuku](https://shizuku.rikka.app/) to achieve this using carrier
 **WARNING**: Anything using Shizuku might potentially cause harm to your device (and the data on it). I'm not responsible for any damage that might be caused by this app.
 You have been warned.
 
+**TROUBLESHOOTING**: If the carrier name you chose isn't applying, try cycling airplane mode on and off.
+
 [You can download a prebuilt APK here](https://github.com/nullbytepl/CarrierVanityName/releases)
