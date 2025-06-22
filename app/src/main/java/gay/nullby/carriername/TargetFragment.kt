@@ -1,6 +1,7 @@
 package gay.nullby.carriername
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.telephony.CarrierConfigManager
@@ -17,6 +18,7 @@ import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
+import com.android.internal.R.attr.country
 import com.android.internal.telephony.ICarrierConfigLoader
 import gay.nullby.carriername.databinding.FragmentTargetBinding
 import rikka.shizuku.ShizukuBinderWrapper
@@ -54,11 +56,11 @@ class TargetFragment : Fragment() {
 
         if (_subId1 != null) {
             subId1 = _subId1[0]
-            view.findViewById<RadioButton>(R.id.sub1_button).text = "Network 1 (carrier: ${getCarrierNameBySubId(subId1)})"
+            view.findViewById<RadioButton>(R.id.sub1_button).text = "Network 1 (carrier: ${getCarrierInfoBySubId(subId1)})"
         }
         if (_subId2 != null) {
             subId2 = _subId2[0]
-            view.findViewById<RadioButton>(R.id.sub2_button).text = "Network 2 (carrier: ${getCarrierNameBySubId(subId2)})"
+            view.findViewById<RadioButton>(R.id.sub2_button).text = "Network 2 (carrier: ${getCarrierInfoBySubId(subId2)})"
         }
 
         if (subId2 == -1) {
@@ -132,10 +134,17 @@ class TargetFragment : Fragment() {
         }
     }
 
-    private fun getCarrierNameBySubId(subId: Int): String {
+    private fun getCarrierInfoBySubId(subId: Int): String {
         val telephonyManager = context!!.getSystemService(Context.TELEPHONY_SERVICE) as? TelephonyManager
             ?: return ""
-        return telephonyManager.getNetworkOperatorName(subId)
+        val networkName = telephonyManager.getNetworkOperatorName(subId)
+        val networkCountry = (if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            SubscriptionManager.getSlotIndex(subId)
+                .takeIf { it != SubscriptionManager.SIM_NOT_INSERTED }
+                ?.let { telephonyManager.getNetworkCountryIso(it) }
+        } else null) ?: "Unknown"
+        val simCountry = TelephonyManager.getSimCountryIso(subId)
+        return "$networkName - $simCountry"
     }
 
     private fun overrideCarrierConfig(subId: Int, p: PersistableBundle?) {

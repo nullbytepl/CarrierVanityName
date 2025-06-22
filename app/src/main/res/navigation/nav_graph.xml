@@ -13,6 +13,8 @@
 
         <action
             android:id="@+id/action_setup_to_target"
+            app:popUpTo="@id/FirstFragment"
+            app:popUpToInclusive="true"
             app:destination="@id/TargetFragment" />
     </fragment>
     <fragment

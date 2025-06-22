@@ -7,20 +7,35 @@ android {
     namespace 'gay.nullby.carriername'
     compileSdk 33
 
+    signingConfigs {
+        release {
+            if (project.properties['keyStore.release.storeFile'] != null) {
+                storeFile file(project.properties['keyStore.release.storeFile'])
+                storePassword project.properties['keyStore.release.storePassword']
+                keyAlias project.properties['keyStore.release.keyAlias']
+                keyPassword project.properties['keyStore.release.keyPassword']
+            }
+        }
+    }
+
     defaultConfig {
         applicationId "gay.nullby.carriername"
         minSdk 28
         targetSdk 33
         versionCode 2
-        versionName "1.1"
+        versionName "1.1.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            signingConfig signingConfigs.release
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {
@@ -36,6 +51,12 @@ android {
 }
 
 dependencies {
+    // Download android.jar from the following url and put it in the root directory of the project
+    // https://github.com/Reginer/aosp-android-jar/raw/refs/heads/main/android-33/android.jar
+    final androidJar = file('../android.jar')
+    if (androidJar.exists()) {
+        compileOnly files(androidJar)
+    }
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.0'
