@@ -23,6 +23,8 @@ class MainActivity : AppCompatActivity() {
 
         HiddenApiBypass.addHiddenApiExemptions("L")
         HiddenApiBypass.addHiddenApiExemptions("I")
+        // Ensure internal telephony classes are accessible via reflection
+        HiddenApiBypass.addHiddenApiExemptions("com.android.internal.telephony")
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
